@@ -40,3 +40,4 @@ class MockTest1(models.Model):
 class Teacher(models.Model):
     name = models.CharField(max_length=40)
     college = models.ForeignKey(College, on_delete=models.CASCADE)
+
