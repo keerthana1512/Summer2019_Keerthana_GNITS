@@ -1,0 +1,128 @@
+{% extends 'base_html.html' %}
+
+{%block content%}
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+    <section class="hero has-background-prime is-success has-text-white">
+        <div class="hero-body has-text-centered">
+            <nav>
+                <ul>
+                    <li style="font-size:50px";>{{match.team1}} vs {{match.team2}}</li>
+                    <li><a href="{% url 'logout' %} " class="button is-dark is-pulled-right">Logout</a></li>
+                </ul>
+            </nav>
+                    </div>
+    </section>
+
+<div class="box has-text-centered">
+    <h1><b>Team Details</b></h1>
+    Venue : {{match.venue}}
+    <br>
+    Toss Decision : {{match.toss_decision}}
+    <br>
+    Result : {{match.result}}
+</div>
+
+
+<div class="box has-text-centered">
+    <h1><b>Top 3 Runners</b></h1>
+    <br>
+    <b>Batsman:</b>{{runners.0.batsman}}    <b>Runs:</b>{{runners.0.total_runs__sum}}
+<br>
+    <b>Batsman:</b>{{runners.1.batsman}}    <b>Runs:</b>{{runners.1.total_runs__sum}}
+ <br>
+    <b>Batsman:</b>{{runners.2.batsman}}    <b>Runs</b>:{{runners.2.total_runs__sum}}
+<br>
+</div>
+
+
+<div class="box has-text-centered">
+    <h1><b>Top 3 Wicket Takers</b></h1>
+    <table>
+    <br>
+    <b>Bowler:</b>{{wickets.0.bowler}}    <b>Wickets:</b>{{wickets.0.player_dismissed__count}}
+    <br>
+    <b>Bowler:</b>{{wickets.1.bowler}}    <b>Wickets:</b>{{wickets.1.player_dismissed__count}}
+    <br>
+    <b>Bowler:</b>{{wickets.2.bowler}}    <b>Wickets:</b>{{wickets.2.player_dismissed__count}}
+        <br>
+        </table>
+</div>
+
+
+
+<div class="tab">
+  <button class="tablinks button is-dark" onclick="openTab(event, 'Innings1')">Innings1</button>
+  <button class="tablinks button is-dark" onclick="openTab(event, 'Innings2')">Innings2</button>
+</div>
+
+
+<div id="Innings1" class="tabcontent">
+  <table border="1" style="align:center" class="table is-striped is-fullwidth">
+        <tr>
+            <th>Innings</th>
+            <th>Batsman</th>
+            <th>Bowler</th>
+            <th>Batsman Team</th>
+            <th>Bowler Team</th>
+            <th>Balls</th>
+            <th>Overs</th>
+        </tr>
+        {% for delivery in deliveries1 %}
+        <tr>
+                <td>{{delivery.inning}}</td>
+                <td>{{delivery.batsman}}</td>
+                <td>{{delivery.bowler}}</td>
+                <td>{{delivery.batting_team}}</td>
+                <td>{{delivery.bowling_team}}</td>
+                <td>{{delivery.ball}}</td>
+                <td>{{delivery.over}}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+<div id="Innings2" class="tabcontent">
+    <table border="1" style="align:center" class="table is-striped is-fullwidth">
+        <tr>
+            <th>Innings</th>
+            <th>Batsman</th>
+            <th>Bowler</th>
+            <th>Batsman Team</th>
+            <th>Bowler Team</th>
+            <th>Balls</th>
+            <th>Overs</th>
+        </tr>
+        {% for delivery in deliveries2 %}
+        <tr>
+                <td>{{delivery.inning}}</td>
+                <td>{{delivery.batsman}}</td>
+                <td>{{delivery.bowler}}</td>
+                <td>{{delivery.batting_team}}</td>
+                <td>{{delivery.bowling_team}}</td>
+                <td>{{delivery.ball}}</td>
+                <td>{{delivery.over}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+    <br>
+    <br>
+{%endblock%}
