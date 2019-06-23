@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>Create a Post </title>
+</head>
+
+<body>
+<h1>Create a Post </h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        College_name: <input type="text" name="name"/><br/>
+        Location: <input type="text" name="location"/><br/>
+        Acronym: <input type="text" name="acronym"/><br/>
+        Contact: <input type="text" name="contact"/><br/>
+
+        <input type="submit" value="Post"/>
+    </form>
+</body>
+
+</html>
