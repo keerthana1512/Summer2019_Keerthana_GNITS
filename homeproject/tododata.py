@@ -1,2 +1,0 @@
-from todoapp.models import *
-
