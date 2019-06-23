@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colleges</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Acronym</th>
+        </tr>
+        {%for i in college_list%}
+            <tr>
+                <td>{{i.0}}</td>
+                <td>{{i.1}}</td>
+            </tr>
+        {%endfor%}
+    </table>
+    </body>
+</html>
